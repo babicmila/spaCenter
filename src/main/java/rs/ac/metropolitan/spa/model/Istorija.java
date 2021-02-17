@@ -3,10 +3,15 @@ package rs.ac.metropolitan.spa.model;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Istorija {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int istorijaId;
     private List<Kupon> listaKupona;
 
