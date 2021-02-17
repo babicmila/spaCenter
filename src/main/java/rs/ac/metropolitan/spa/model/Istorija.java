@@ -2,10 +2,7 @@ package rs.ac.metropolitan.spa.model;
 
 import java.util.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Istorija {
@@ -13,13 +10,19 @@ public class Istorija {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int istorijaId;
-    private List<Kupon> listaKupona;
+
+    @OneToMany
+    private Set<Kupon> listaKupona = new HashSet<>();
+
+    @OneToOne
+    private Korisnik korisnik;
 
     public Istorija() {
     }
 
-    public Istorija(int brOtkazanihTretmana, List<Kupon> listaKupona) {
+    public Istorija(Set<Kupon> listaKupona, Korisnik k) {
         this.listaKupona = listaKupona;
+        this.korisnik = k;
     }
 
     public int getIstorijaId() {
@@ -30,12 +33,20 @@ public class Istorija {
         this.istorijaId = istorijaId;
     }
 
-    public List<Kupon> getListaKupona() {
+    public Set<Kupon> getListaKupona() {
         return this.listaKupona;
     }
 
-    public void setListaKupona(List<Kupon> listaKupona) {
+    public void setListaKupona(Set<Kupon> listaKupona) {
         this.listaKupona = listaKupona;
+    }
+
+    public Korisnik getKorisnik() {
+        return korisnik;
+    }
+
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
     public void azurirajIstoriju(Kupon kupon) {

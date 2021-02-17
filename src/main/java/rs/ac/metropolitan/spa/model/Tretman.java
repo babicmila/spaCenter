@@ -17,6 +17,9 @@ public class Tretman {
     private double tretmanCena;
     private String urlSlike;
 
+    public Tretman() {
+    }
+
     public Tretman(String tretmanNaziv, String tretmanOpis, int tretmanTrajanje, double tretmanCena, String urlSlike) {
         this.tretmanNaziv = tretmanNaziv;
         this.tretmanOpis = tretmanOpis;

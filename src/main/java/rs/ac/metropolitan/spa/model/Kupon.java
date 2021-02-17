@@ -1,22 +1,28 @@
 package rs.ac.metropolitan.spa.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class Kupon {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int kuponId;
     private String sifraKupona;
-    public Korisnik korisnik;
+
+    @OneToOne
     public Tretman tretman;
+
+    @ManyToOne
+    public Istorija istorija;
 
     public Kupon() {
     }
 
-    public Kupon(String sifraKupona, Korisnik korisnik, Tretman tretman) {
+    public Kupon(String sifraKupona, Tretman tretman, Istorija istorija) {
         this.sifraKupona = sifraKupona;
-        this.korisnik = korisnik;
         this.tretman = tretman;
-
+        this.istorija = istorija;
     }
 
     public int getKuponId() {
@@ -35,12 +41,12 @@ public class Kupon {
         this.sifraKupona = sifraKupona;
     }
 
-    public Korisnik getKorisnik() {
-        return this.korisnik;
+    public Istorija getIstorija() {
+        return istorija;
     }
 
-    public void setKorisnik(Korisnik korisnik) {
-        this.korisnik = korisnik;
+    public void setIstorija(Istorija istorija) {
+        this.istorija = istorija;
     }
 
     public Tretman getTretman() {
